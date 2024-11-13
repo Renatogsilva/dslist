@@ -1,22 +1,26 @@
 package com.br.renatogomes.dslist.controller;
 
+import com.br.renatogomes.dslist.dto.GameDTO;
 import com.br.renatogomes.dslist.dto.GameMinDTO;
 import com.br.renatogomes.dslist.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/games")
+@RequestMapping(value = "/api/v1/games")
 public class GameController {
 
     @Autowired
     private GameService gameService;
+
+    @GetMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public GameDTO findById(@PathVariable Long id) {
+        return this.gameService.findById(id);
+    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
