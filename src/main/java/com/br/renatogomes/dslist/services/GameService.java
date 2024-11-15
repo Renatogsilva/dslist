@@ -41,7 +41,7 @@ public class GameService {
         List<GameMinProjection> listGameMinProjection = this.gameRepository.searchByList(listId);
 
         return listGameMinProjection.stream().map(gameMin -> new GameMinDTO(gameMin.getId(), gameMin.getTitle(),
-                gameMin.getYear(), gameMin.getImgUrl(),
+                gameMin.getGameYear(), gameMin.getImgUrl(),
                 gameMin.getShortDescription())).toList();
     }
 }
