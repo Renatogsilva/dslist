@@ -2,6 +2,7 @@ package com.br.renatogomes.dslist.controller;
 
 import com.br.renatogomes.dslist.dto.GameListDTO;
 import com.br.renatogomes.dslist.dto.GameMinDTO;
+import com.br.renatogomes.dslist.dto.ReplacementDTO;
 import com.br.renatogomes.dslist.services.GameListService;
 import com.br.renatogomes.dslist.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,11 @@ public class GameListController {
     @ResponseStatus(HttpStatus.OK)
     public List<GameMinDTO> findByList(@PathVariable Long listId){
         return this.gameService.findByList(listId);
+    }
+
+    @PostMapping("/{listId}/replacement")
+    @ResponseStatus(HttpStatus.OK)
+    public void findByList(@PathVariable Long listId, @RequestBody ReplacementDTO replacementDTO){
+        this.gameListService.move(listId, replacementDTO.getSourceIndex(), replacementDTO.getDestinationIndex());
     }
 }
